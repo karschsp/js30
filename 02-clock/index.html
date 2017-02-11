@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Clock</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div class="clock">
+			<div class="clock-face">
+				<div class="hand hour-hand"></div>
+				<div class="hand minute-hand"></div>
+				<div class="hand second-hand"></div>
+			</div>
+		</div>
+
+	<script>
+	const secondHand = document.querySelector('.second-hand');
+	const minutesHand = document.querySelector('.minute-hand');
+	const hourHand = document.querySelector('.hour-hand');
+	const html = document.querySelector('html');
+
+	function setDate() {
+		const now = new Date();
+
+		const seconds = now.getSeconds();
+		
+		var s = seconds;
+		const secondsDegrees = ((seconds / 60) * 360) + 90;
+		/* if (s = 0) {
+			secondHand.style.transition = `none`;
+			minutesHand.style.transition = `none`;
+		} else {
+			secondHand.style.transition = `all 0.0.5s`;
+			minutesHand.style.transition = `all 0.0.5s`;
+		} */
+		if (s == 0) {
+			html.style.background = `url('http://unsplash.it/1600/1200/?random&blur=50&r=` + new Date().getTime() + `);`;
+			console.log(html);
+		}
+		secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+		
+		const minutes = now.getMinutes();
+		const minutesDegrees = ((minutes / 60) * 360) + 90;
+		minutesHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+		const hour = now.getHours();
+		const hourDegrees = ((hour / 12) * 360) + 90;
+		hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+
+	}
+
+	setInterval(setDate, 1000);
+
+	</script>
+	</body>
+</html>
